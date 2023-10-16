@@ -30,7 +30,7 @@ app.get("/campgrounds", async (req, res) => {
   res.render("campgrounds/index", { campgrounds });
 });
 
-// show the form for creating campgrounds
+// show the form for creating a campground
 app.get("/campgrounds/new", (req, res) => {
   res.render("campgrounds/new");
 });
@@ -49,18 +49,26 @@ app.get("/campgrounds/:id", async (req, res) => {
   res.render("campgrounds/show", { campground });
 });
 
+// show the form for updating a campground
 app.get("/campgrounds/:id/edit", async (req, res) => {
   const { id } = req.params;
   const campground = await Campground.findById(id);
   res.render("campgrounds/edit", { campground });
 });
 
+// update a campground
 app.put("/campgrounds/:id", async (req, res) => {
   const { id } = req.params;
-  const campground = await Campground.findByIdAndUpdate(req.params.id, {
+  const campground = await Campground.findByIdAndUpdate(id, {
     ...req.body.campground,
   });
   res.redirect(`/campgrounds/${campground._id}`);
+});
+
+app.delete("/campgrounds/:id", async (req, res) => {
+  const { id } = req.params;
+  await Campground.findByIdAndDelete(id);
+  res.redirect("/campgrounds");
 });
 
 app.listen(3000, () => {
