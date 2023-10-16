@@ -1,3 +1,3 @@
 # MapMark
 
-# Hi!
+Hi!
