@@ -1,3 +1,4 @@
+<!-- This is the bootstrap boilerplate for all views. -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,5 +26,27 @@
       integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
       crossorigin="anonymous"
     ></script>
+
+    <!-- for bootstrap's form validation -->
+    <!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
+    <script>
+      (() => {
+        "use strict";
+        const forms = document.querySelectorAll(".validated-form");
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
   </body>
 </html>
