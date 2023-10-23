@@ -2,6 +2,8 @@
 <div class="row">
   <h1 class="text-center">Edit Campground</h1>
   <div class="col-6 offset-3">
+    <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
+    <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
     <form
       action="/campgrounds/<%= campground._id %>?_method=PUT"
       method="POST"
