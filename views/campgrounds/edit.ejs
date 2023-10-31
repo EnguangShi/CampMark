@@ -4,74 +4,31 @@
   <div class="col-6 offset-3">
     <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
     <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
-    <form
-      action="/campgrounds/<%= campground._id %>?_method=PUT"
-      method="POST"
-      novalidate
-      class="validated-form"
-    >
+    <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <!-- it stores what's in the input box inside campground[title] -->
-        <input
-          class="form-control"
-          type="text"
-          id="title"
-          name="campground[title]"
-          value="<%= campground.title %>"
-          required
-        />
+        <input class="form-control" type="text" id="title" name="campground[title]" value="<%= campground.title %>" required />
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
-        <input
-          class="form-control"
-          type="text"
-          id="location"
-          name="campground[location]"
-          value="<%= campground.location %>"
-          required
-        />
+        <input class="form-control" type="text" id="location" name="campground[location]" value="<%= campground.location %>" required />
       </div>
       <div class="mb-3">
-        <label class="form-label" for="image">Image Url</label>
-        <input
-          class="form-control"
-          type="text"
-          id="image"
-          name="campground[image]"
-          value="<%= campground.image %>"
-          required
-        />
+        <label class="form-label" for="image">Add Images</label>
+        <input type="file" name="image" , id="image" multiple>
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
         <div class="input-group">
           <span class="input-group-text" id="price-label">$</span>
-          <input
-            type="text"
-            class="form-control"
-            id="price"
-            placeholder="0.00"
-            aria-label="price"
-            aria-describedby="price-label"
-            name="campground[price]"
-            value="<%= campground.price %>"
-            required
-          />
+          <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" value="<%= campground.price %>" required />
         </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
-        <textarea
-          class="form-control"
-          type="text"
-          id="description"
-          name="campground[description]"
-          required
-        >
-<%= campground.description %></textarea
-        >
+        <textarea class="form-control" type="text" id="description" name="campground[description]" required>
+<%= campground.description %></textarea>
       </div>
       <div class="mb-3">
         <button class="btn btn-info">Update Campground</button>
