@@ -2,6 +2,11 @@ const { campgroundSchema, reviewSchema } = require("./schemas");
 const ExpressError = require("./utilities/ExpressError");
 const Campground = require("./models/campground");
 const Review = require("./models/review");
+const multer = require("multer");
+const { storage } = require("./cloudinary");
+const upload = multer({ storage });
+const config = require("./public/config.json");
+const MAX_IMAGES = config.MAX_IMAGES;
 
 module.exports.isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -57,4 +62,18 @@ module.exports.validateReview = (req, res, next) => {
   } else {
     next();
   }
+};
+
+module.exports.imageUpload = (req, res, next) => {
+  // Use multer to process the file uploads
+  upload.array("image", MAX_IMAGES)(req, res, (err) => {
+    if (
+      err instanceof multer.MulterError &&
+      err.code === "LIMIT_UNEXPECTED_FILE"
+    ) {
+      req.flash("error", `You can only upload up to ${MAX_IMAGES} images!`);
+      return res.redirect("back");
+    }
+    next();
+  });
 };
