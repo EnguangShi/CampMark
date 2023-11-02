@@ -45,6 +45,14 @@ module.exports.storeReturnTo = (req, res, next) => {
 };
 
 module.exports.validateCampground = (req, res, next) => {
+  if (
+    !req.body.campground.location &&
+    req.body["campground[location] address-search"]
+  ) {
+    const address = req.body["campground[location] address-search"];
+    req.body.campground.location = address;
+    delete req.body["campground[location] address-search"];
+  }
   const { error } = campgroundSchema.validate(req.body);
   if (error) {
     const msg = error.details.map((el) => el.message).join(",");
@@ -71,7 +79,10 @@ module.exports.imageUpload = (req, res, next) => {
       err instanceof multer.MulterError &&
       err.code === "LIMIT_UNEXPECTED_FILE"
     ) {
-      req.flash("error", `You can only upload up to ${MAX_IMAGES} images!`);
+      req.flash(
+        "error",
+        `You cannot upload more than ${MAX_IMAGES} images at a time`
+      );
       return res.redirect("back");
     }
     next();

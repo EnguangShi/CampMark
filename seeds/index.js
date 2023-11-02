@@ -25,14 +25,18 @@ const seedDB = async () => {
     const camp = new Campground({
       author: "653ee4d400413f934482d6d5",
       location: `${cities[random1000].city}, ${cities[random1000].state}`,
+      geometry: {
+        type: "Point",
+        coordinates: [-73.856077, 40.848447],
+      },
       title: `${sample(descriptors)} ${sample(places)}`,
       images: [
         {
-          url: "https://res.cloudinary.com/dikzo7peu/image/upload/v1698732035/CampMark/kedc4tbqlfvd3dl2tnkc.png",
+          url: "https://res.cloudinary.com/dikzo7peu/image/upload/v1698728817/vevpsunfqv4q9rqt7yks.png",
           filename: "CampMark/kedc4tbqlfvd3dl2tnkc",
         },
         {
-          url: "https://res.cloudinary.com/dikzo7peu/image/upload/v1698732036/CampMark/kcpo4t5epvzpnekzrd4d.png",
+          url: "https://res.cloudinary.com/dikzo7peu/image/upload/v1698728817/vevpsunfqv4q9rqt7yks.png",
           filename: "CampMark/kcpo4t5epvzpnekzrd4d",
         },
       ],

@@ -31,7 +31,7 @@ fetch("/config.json")
     imageInput.addEventListener("change", function () {
       const selectedFiles = imageInput.files;
       if (selectedFiles.length > MAX_IMAGES) {
-        alert(`You can only upload ${MAX_IMAGES} images at a time`);
+        alert(`You cannot upload more than ${MAX_IMAGES} images at a time`);
         imageInput.value = ""; // Clear the file input
       }
     });

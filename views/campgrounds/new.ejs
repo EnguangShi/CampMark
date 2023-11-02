@@ -1,4 +1,5 @@
 <% layout('layouts/boilerplate') %>
+
 <div class="row">
   <h1 class="text-center">New Campground</h1>
   <div class="col-6 offset-3">
@@ -13,7 +14,7 @@
       </div>
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
-        <input class="form-control" type="text" id="location" name="campground[location]" required />
+        <input class="form-control" type="text" id="location" name="campground[location]" autocomplete="address-line1" required />
       </div>
       <div class="mb-3">
         <label class="form-label" for="price">Campground Price</label>
@@ -37,3 +38,7 @@
     <a href="/campgrounds">All Campgrounds</a>
   </div>
 </div>
+
+<!-- for bootstrap's form validation -->
+<!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
+<script src="/javascripts/validateForms.js"></script>
