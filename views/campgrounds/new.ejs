@@ -1,71 +1,48 @@
 <% layout('layouts/boilerplate') %>
+
 <div class="row">
-  <h1 class="text-center">New Campground</h1>
-  <div class="col-6 offset-3">
-    <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
-    <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
-    <form action="/campgrounds" method="POST" novalidate class="validated-form">
-      <div class="mb-3">
-        <label class="form-label" for="title">Title</label>
-        <!-- it stores what's in the input box inside campground[title] -->
-        <input
-          class="form-control"
-          type="text"
-          id="title"
-          name="campground[title]"
-          required
-        />
+  <h1 class="text-center mb-3">New Campground</h1>
+  <div class="col-md-6 offset-md-3">
+    <div class="card shadow">
+      <div class="card-body">
+        <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
+        <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
+        <!-- enctype="multipart/form-data" tells the browser to encode data not only text data but also binary data, so that we can upload files-->
+        <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label class="form-label" for="title">Title</label>
+            <!-- it stores what's in the input box inside campground[title] -->
+            <input class="form-control" type="text" id="title" name="campground[title]" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="location">Location</label>
+            <input class="form-control" type="text" id="location" name="campground[location]" autocomplete="address-line1" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="price">Campground Price</label>
+            <div class="input-group">
+              <span class="input-group-text" id="price-label">$</span>
+              <input type="text" class="form-control" id="price" placeholder="0.00" aria-label="price" aria-describedby="price-label" name="campground[price]" required />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Images</label>
+            <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-success">Add Campground</button>
+          </div>
+        </form>
       </div>
-      <div class="mb-3">
-        <label class="form-label" for="location">Location</label>
-        <input
-          class="form-control"
-          type="text"
-          id="location"
-          name="campground[location]"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="image">Image Url</label>
-        <input
-          class="form-control"
-          type="text"
-          id="image"
-          name="campground[image]"
-          required
-        />
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="price">Campground Price</label>
-        <div class="input-group">
-          <span class="input-group-text" id="price-label">$</span>
-          <input
-            type="text"
-            class="form-control"
-            id="price"
-            placeholder="0.00"
-            aria-label="price"
-            aria-describedby="price-label"
-            name="campground[price]"
-            required
-          />
-        </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="description">Description</label>
-        <textarea
-          class="form-control"
-          type="text"
-          id="description"
-          name="campground[description]"
-          required
-        ></textarea>
-      </div>
-      <div class="mb-3">
-        <button class="btn btn-success">Add Campground</button>
-      </div>
-    </form>
+    </div>
     <a href="/campgrounds">All Campgrounds</a>
   </div>
 </div>
+
+<!-- for bootstrap's form validation -->
+<!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
+<script src="/javascripts/validateForms.js"></script>
