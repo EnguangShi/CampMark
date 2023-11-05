@@ -7,7 +7,7 @@
       <div class="card-body">
         <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
         <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
-        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate class="validated-form single-submission-form" enctype="multipart/form-data">
           <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <!-- it stores what's in the input box inside campground[title] -->
@@ -52,7 +52,7 @@
             <% } %>
           </div>
           <div class="mb-3">
-            <button class="btn btn-info">Update Campground</button>
+            <button class="btn btn-info single-submission-btn" id="singleSubmissionBtn">Update Campground</button>
           </div>
         </form>
       </div>
@@ -64,3 +64,5 @@
 <!-- for bootstrap's form validation -->
 <!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
 <script src="/javascripts/validateForms.js"></script>
+<!-- for single submission -->
+<script src="/javascripts/formSubmissionHandler.js"></script>
