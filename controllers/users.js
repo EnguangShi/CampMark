@@ -12,7 +12,7 @@ module.exports.register = async (req, res) => {
     req.login(registeredUser, (err) => {
       if (err) return next(err);
       req.flash("success", "Welcome to CampMark!");
-      res.redirect("/campgrounds");
+      res.redirect("/all");
     });
   } catch (e) {
     req.flash("error", e.message);
@@ -25,7 +25,7 @@ module.exports.renderLogin = (req, res) => {
 };
 module.exports.login = (req, res) => {
   req.flash("success", "Welcome back!");
-  const redirectUrl = res.locals.returnTo || "/campgrounds";
+  const redirectUrl = res.locals.returnTo || "/all";
   res.redirect(redirectUrl);
 };
 
@@ -35,6 +35,6 @@ module.exports.logout = (req, res) => {
       return next(err);
     }
     req.flash("success", "Logged you out!");
-    res.redirect("/campgrounds");
+    res.redirect("/all");
   });
 };

@@ -3,12 +3,26 @@ mapboxgl.accessToken = mapToken;
 const map = new mapboxgl.Map({
   container: "cluster-map",
   // Choose from Mapbox's core styles, or make your own style with Mapbox Studio
-  style: "mapbox://styles/mapbox/outdoors-v12",
-  center: [-127.6476, 53.7267],
-  zoom: 3,
+  style: "mapbox://styles/mapbox/streets-v11",
+  center: [-24, 42],
+  zoom: 1,
 });
 
 map.on("load", () => {
+  // Add the GeolocateControl to the map.
+  const geolocateControl = new mapboxgl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    trackUserLocation: true,
+    showUserHeading: true,
+    fitBoundsOptions: {
+      maxZoom: 10,
+    },
+  });
+
+  map.addControl(geolocateControl);
+
   map.addSource("campgrounds", {
     type: "geojson",
     data: campgrounds,
@@ -59,7 +73,7 @@ map.on("load", () => {
     source: "campgrounds",
     filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-color": "#1B3819",
+      "circle-color": "purple",
       "circle-radius": 5,
       "circle-stroke-width": 1,
       "circle-stroke-color": "#fff",
@@ -114,19 +128,5 @@ map.on("load", () => {
   map.on("mouseleave", "unclustered-point", () => {
     map.getCanvas().style.cursor = "";
   });
-
-  map.addControl(
-    new mapboxgl.GeolocateControl({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      trackUserLocation: true,
-      showUserHeading: true,
-      fitBoundsOptions: {
-        maxZoom: 10,
-      },
-    })
-  );
-
   map.addControl(new mapboxgl.NavigationControl());
 });
