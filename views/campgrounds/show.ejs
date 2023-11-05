@@ -1,7 +1,7 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 <div class="row">
-  <div class="col-6">
+  <div class="col-xl-6">
     <div id="carouselExample" class="carousel slide">
       <div class="carousel-inner">
         <% campground.images.forEach((img, i) => {%>
@@ -47,12 +47,12 @@
       </div>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-xl-6">
     <div id='map'></div>
     <% if (currentUser) {%>
     <h2>Leave a Review</h2>
     <form action="/all/<%= campground._id %>/reviews" method="POST" class="mb-3 validated-form single-submission-form" novalidate>
-      <div class="mb-3">
+      <div>
         <fieldset class="starability-basic">
           <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
           <input type="radio" id="first-rate1" name="review[rating]" value="1" />
@@ -68,7 +68,6 @@
         </fieldset>
       </div>
       <div class="mb-3">
-        <label class="form-label" for="body">Review Text</label>
         <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
       </div>
       <button class="btn btn-success single-submission-btn">Submit</button>
