@@ -8,7 +8,7 @@
         <!-- novalidate is for cancelling browser's default validation and let bootstrap to take over validation -->
         <!-- class="validated-form" is for the bootstrap's script in boilerplate.ejs to select this form -->
         <!-- enctype="multipart/form-data" tells the browser to encode data not only text data but also binary data, so that we can upload files-->
-        <form action="/campgrounds" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+        <form action="/campgrounds" method="POST" novalidate class="validated-form single-submission-form" enctype="multipart/form-data">
           <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <!-- it stores what's in the input box inside campground[title] -->
@@ -34,7 +34,7 @@
             <input class="form-control" type="file" name="image" id="formFileMultiple" multiple>
           </div>
           <div class="mb-3">
-            <button class="btn btn-success">Add Campground</button>
+            <button class="btn btn-success single-submission-btn">Add Campground</button>
           </div>
         </form>
       </div>
@@ -46,3 +46,5 @@
 <!-- for bootstrap's form validation -->
 <!-- https://getbootstrap.com/docs/5.3/forms/validation/ -->
 <script src="/javascripts/validateForms.js"></script>
+<!-- for single submission -->
+<script src="/javascripts/formSubmissionHandler.js"></script>
