@@ -67,8 +67,9 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     httpOnly: true,
-    // by setting this to true, the cookies can only be changed or configured over HTTPS
+    // by setting secure to true, the cookies can only be changed or configured over HTTPS
     secure: true,
+    domain: ".gemexplore.xyz",
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
     maxAge: 1000 * 60 * 60 * 24 * 7,
   },
